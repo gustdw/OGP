@@ -1,13 +1,6 @@
 package instructions;
 
-abstract class Instructions {
-	int[] instructions;
-	Instructions() {
-	}
-	Instructions(int[] instructions) {
-		this.instructions = instructions;
-	}
-}
+abstract class Instructions {}
 
 class LoadConstant extends Instructions {
 	int r;
@@ -16,21 +9,12 @@ class LoadConstant extends Instructions {
 		this.r = r;
 		this.c = c;
 	}
-	int getR() {
-		return r;
-	}
-	int getC() {
-		return c;
-	}
 }
 
 class Decrement extends Instructions {
 	int r;
 	Decrement(int r) {
 		this.r = r;
-	}
-	int getR() {
-		return r;
 	}
 }
 
@@ -41,12 +25,6 @@ class Multiply extends Instructions {
 		this.r1 = r1;
 		this.r2 = r2;
 	}
-	int getR1() {
-		return r1;
-	}
-	int getR2() {
-		return r2;
-	}
 }
 
 class JumpIfZero extends Instructions {
@@ -56,21 +34,12 @@ class JumpIfZero extends Instructions {
 		this.r = r;
 		this.a = a;
 	}
-	int getR() {
-		return r;
-	}
-	int getA() {
-		return a;
-	}
 }
 
 class Jump extends Instructions {
 	int a;
 	Jump(int a) {
 		this.a = a;
-	}
-	int getA() {
-		return a;
 	}
 }
 
@@ -87,25 +56,27 @@ public class Machine {
 		int pc = 0;
 		while (pc < instructions.length) {
 			if (instructions[pc] instanceof LoadConstant lc) {
-				registers[lc.getR()] = lc.getC();
+				registers[lc.r] = lc.r;
 			}
 			else if (instructions[pc] instanceof Decrement dc) {
-				registers[dc.getR()] -= 1;
+				registers[dc.r] -= 1;
 			}
 			else if (instructions[pc] instanceof Multiply mul) {
-				registers[mul.getR1()] = registers[mul.getR1()] * registers[mul.getR2()];
+				registers[mul.r1] = registers[mul.r1] * registers[mul.r2];
 			}
 			else if (instructions[pc] instanceof JumpIfZero beqz) {
-				if (registers[beqz.getR()] == 0)	
-					pc = beqz.getA() - 1;
+				if (registers[beqz.r] == 0)	
+					pc = beqz.a - 1;
 			}
 			else if (instructions[pc] instanceof Jump j) {
-				pc = j.getA() - 1;
+				pc = j.a - 1;
 			}
 			else if (instructions[pc] instanceof Halt nop) {
 				System.out.print("Program finished");
 			}
-			pc += 1;
-		}
+			else
+				throw new AssertionError();
+			pc++;
+		} 
 	}
 }
