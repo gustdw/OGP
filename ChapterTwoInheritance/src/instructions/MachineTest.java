@@ -22,7 +22,7 @@ public class MachineTest {
         int[] registers = new int[]{1, 1, 1};
 
         // Create instance of Machine
-        Machine machine = new Machine();
+        Machine machine = new Machine(0);
 
         // Execute instructions
         machine.execute(registers, instructions);
