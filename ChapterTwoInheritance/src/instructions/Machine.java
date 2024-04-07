@@ -57,26 +57,29 @@ public class Machine {
 		while (pc < instructions.length) {
 			if (instructions[pc] instanceof LoadConstant lc) {
 				registers[lc.r] = lc.r;
+				pc++;
 			}
 			else if (instructions[pc] instanceof Decrement dc) {
-				registers[dc.r] -= 1;
+				registers[dc.r]--;
+				pc++;
 			}
 			else if (instructions[pc] instanceof Multiply mul) {
 				registers[mul.r1] = registers[mul.r1] * registers[mul.r2];
+				pc++;
 			}
 			else if (instructions[pc] instanceof JumpIfZero beqz) {
 				if (registers[beqz.r] == 0)	
-					pc = beqz.a - 1;
+					pc = beqz.a;
 			}
 			else if (instructions[pc] instanceof Jump j) {
-				pc = j.a - 1;
+				pc = j.a;
 			}
 			else if (instructions[pc] instanceof Halt nop) {
 				System.out.print("Program finished");
+				pc++;
 			}
 			else
 				throw new AssertionError();
-			pc++;
 		} 
 	}
 }
