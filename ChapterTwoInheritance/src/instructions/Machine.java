@@ -1,7 +1,6 @@
 package instructions;
 
 abstract class Instructions {
-	int[] registers;
 	abstract void performAction(Machine machine);
 }
 
