@@ -26,11 +26,19 @@ class Point {
 	}
 }
 
-/**
- * Checks whether or not a given Point is inside of a to-be specified area near the circle.
- * @return | true || false
- */
 abstract class CircleHitTest {
+	/**
+	 * Checks whether or not a given Point is inside of a to-be specified area near the circle.
+	 *@pre | circle != null
+	 *@pre | testPoint != null
+	 *@post If the point lies inside of the circle, result is true 
+	 *		| !(circle.getCenter().distanceTo(testPoint) <= circle.getRadius()) || result == true
+	 *@post If the point lies outside of the bounding box, result is false
+	 *		| !(testPoint.getX() <= circle.getCenter().getX() + circle.getRadius() &&
+	 *		|		testPoint.getX() > (circle.getCenter().getX() - circle.getRadius()) &&
+			|		testPoint.getY() <= (circle.getCenter().getY() + circle.getRadius()) &&
+			|		testPoint.getY() > (circle.getCenter().getY() - circle.getRadius())) || result == false
+	 */
 	abstract boolean containsPoint(Circle circle, Point testPoint);
 }
 
@@ -89,7 +97,7 @@ class PreciseCircleHitTest extends CircleHitTest {
 	 * @return | testPoint.distanceTo(circle.getCenter()) <= circle.getRadius()
 	 */
 	public boolean containsPoint(Circle circle, Point testPoint) {
-		return (testPoint.distanceTo(circle.getCenter()) < circle.getRadius());
+		return (testPoint.distanceTo(circle.getCenter()) <= circle.getRadius());
 	}
 }
 
@@ -115,7 +123,7 @@ class FastCircleHitTest extends CircleHitTest {
 	Circle getCircle() {return this.circle;}
 	Point getPoint() {return this.testPoint;}
 	/**
-	 * Checks whether or not a given Point lies within a bounding box around the circle. This is a square with its sides parallel with it's axis.
+	 * Checks whether or not a given Point lies within a bounding box around the circle. This is a square with its sides parallel with it's axis, boundaries included.
 	 * @return | (testPoint.getX() >= (circle.getCenter().getX() - circle.getRadius()) && 
 					testPoint.getX() < (circle.getCenter().getX() + circle.getRadius()) &&
 					testPoint.getY() >= (circle.getCenter().getY() - circle.getRadius()) &&
