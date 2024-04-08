@@ -1,4 +1,4 @@
-package CircleHitTest;
+package circleHitTest;
 
 /**
  * Point object contains an x- & y-coordinate

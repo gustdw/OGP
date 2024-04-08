@@ -1,4 +1,4 @@
-package CircleHitTest;
+package circleHitTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
