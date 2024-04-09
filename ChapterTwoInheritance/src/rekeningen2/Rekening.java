@@ -33,20 +33,19 @@ public abstract class Rekening {
 	
 	/**
 	 * @pre | rekening2 != null
+	 * @inspects | this, rekening2
+	 * @post | !result || getBalans() == rekening2.getBalans()
 	 */
 	public abstract boolean equals(Rekening rekening2);
-	
-	/**
-	 * @post | result == "Uw balans bedraagt: " + getBalans()
-	 */
-	public String toString() {
-		return ("Uw balans bedraagt: " + balans);
-	}
 }
 
+/**
+ * @invariant | getBalans() >= -getKredietlimiet()
+ */
 class Zichtrekening extends Rekening{
 	private int balans;
 	/**
+	 * @invar | getBalans() >= -kredietlimiet
 	 * @invar | kredietlimiet >= 0
 	 */
 	private int kredietlimiet;
@@ -85,13 +84,13 @@ class Zichtrekening extends Rekening{
 	 * @post | rekening2.getClass() == getClass() ? result == (getBalans() == rekening2.getBalans() && getKredietlimiet() == ((Zichtrekening)rekening2).getKredietlimiet()) : false
 	 */
 	public boolean equals(Rekening rekening2) {
-		if (rekening2.getClass() == this.getClass())
-			return balans == rekening2.getBalans() && kredietlimiet == ((Zichtrekening)rekening2).getKredietlimiet();
+		if (rekening2 instanceof Zichtrekening zrek)
+			return balans == zrek.getBalans() && kredietlimiet == zrek.getKredietlimiet();
 		return false;
 	}
 	
 	/**
-	 * @post | result == "Uw balans bedraagt: " + getBalans() + "\nUw kredietlimiet bedraagt: " + getKredietlimiet()
+	 * @post | result != null
 	 */
 	public String toString() {
 		return ("Uw balans bedraagt: " + balans + "\nUw kredietlimiet bedraagt: " + kredietlimiet );
@@ -121,8 +120,15 @@ class Spaarrekening extends Rekening {
 	 * @post | rekening2.getClass() == getClass() ? result == (getBalans() == rekening2.getBalans()) : result == false
 	 */
 	public boolean equals(Rekening rekening2) {
-		if (rekening2.getClass() == this.getClass())
-			return balans == rekening2.getBalans();
+		if (rekening2 instanceof Spaarrekening srek)
+			return balans == srek.getBalans();
 		return false;
+	}
+	
+	/**
+	 * @post | result != null
+	 */
+	public String toString() {
+		return ("Uw balans bedraagt: " + balans);
 	}
 }
