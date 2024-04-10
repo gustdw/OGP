@@ -1,4 +1,4 @@
-package rekeningen2;
+package rekeningen;
 
 public abstract class Rekening {
 	private int balans;
