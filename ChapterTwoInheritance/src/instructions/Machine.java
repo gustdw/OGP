@@ -76,8 +76,7 @@ public class Machine {
 	
 	int[] registers;
 	int pc;
-	Machine(int[] registers) {
-		this.registers = registers;
+	Machine() {
 	}
 	void execute(int[] registers, Instructions[] instructions) {
 		this.registers = registers;
