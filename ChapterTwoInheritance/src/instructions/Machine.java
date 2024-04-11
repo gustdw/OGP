@@ -76,7 +76,9 @@ public class Machine {
 	
 	int[] registers;
 	int pc;
-
+	Machine(int[] registers) {
+		this.registers = registers;
+	}
 	void execute(int[] registers, Instructions[] instructions) {
 		this.registers = registers;
 		while (pc >= 0) {
