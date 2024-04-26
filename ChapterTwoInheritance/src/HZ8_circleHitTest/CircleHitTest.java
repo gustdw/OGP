@@ -1,4 +1,4 @@
-package circleHitTest;
+package HZ8_circleHitTest;
 
 /**
  * Point object contains an x- & y-coordinate

@@ -1,4 +1,4 @@
-package linkedHashSet;
+package HZ10_linkedHashSet;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;

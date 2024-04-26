@@ -1,4 +1,4 @@
-package rekeningen;
+package HZ9_rekeningen;
 
 public abstract class Rekening {
 	private int balans;
@@ -51,7 +51,7 @@ class Zichtrekening extends Rekening{
 	private int kredietlimiet;
 	
 	/**
-	 * @pre | getBalans() == balans
+	 * @post | getBalans() == balans
 	 * @post | getKredietlimiet() == kredietlimiet 
 	 */
 	public Zichtrekening(int balans, int kredietlimiet) {

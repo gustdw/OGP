@@ -1,4 +1,4 @@
-package instructions;
+package HZ6_instructions;
 
 import static org.junit.jupiter.api.Assertions.*;
 

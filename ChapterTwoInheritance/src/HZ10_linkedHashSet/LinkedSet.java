@@ -1,4 +1,4 @@
-package linkedHashSet;
+package HZ10_linkedHashSet;
 
 public class LinkedSet implements Set {
 

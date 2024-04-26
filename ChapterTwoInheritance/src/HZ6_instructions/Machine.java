@@ -1,4 +1,4 @@
-package instructions;
+package HZ6_instructions;
 
 abstract class Instructions {
 	abstract void performAction(Machine machine);

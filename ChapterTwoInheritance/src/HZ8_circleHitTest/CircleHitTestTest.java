@@ -1,8 +1,5 @@
-package circleHitTest;
+package HZ8_circleHitTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
 
 public class CircleHitTestTest {
     public static void main(String[] args) {
