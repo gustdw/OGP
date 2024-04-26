@@ -12,7 +12,7 @@ import logicalcollections.LogicalSet;
 public class Room {
 	/**
 	 * @invar | exams != null
-	 * @invar | exams.stream().allMatch(e -> e != null)
+	 * @invar | exams.stream().allMatch(e -> e != null && e.rooms.contains(this))
 	 * 
 	 * @peerObjects
 	 * @represenationObject
@@ -30,6 +30,7 @@ public class Room {
 	
 	/**
 	 * @post | getRoomNr() == room 
+	 * @post | getExams().isEmpty()
 	 */
 	public Room(String room) {
 		roomNr = room;
